@@ -1,4 +1,4 @@
-///<reference path="../../typings/dist/browser.d.ts" />
+///<reference path="../../typings/browser.d.ts" />
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;

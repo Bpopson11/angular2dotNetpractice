@@ -1,4 +1,4 @@
-﻿///<reference path="../../typings/browser.d.ts" />
+﻿///<reference path="../../node_modules/angular2-in-memory-web-api/typings/browser.d.ts"/>
 
 import {provide, Component, OnInit } from '@angular/core';
 import {CORE_DIRECTIVES} from '@angular/common';
