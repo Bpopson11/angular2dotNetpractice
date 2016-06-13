@@ -8,17 +8,18 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-const core_1 = require('@angular/core');
-let Home = class Home {
-    constructor() {
+var core_1 = require('@angular/core');
+var Home = (function () {
+    function Home() {
     }
-};
-Home = __decorate([
-    core_1.Component({
-        selector: 'home',
-        templateUrl: './app/components/home.html',
-        directives: []
-    }), 
-    __metadata('design:paramtypes', [])
-], Home);
+    Home = __decorate([
+        core_1.Component({
+            selector: 'home',
+            templateUrl: './app/components/home.html',
+            directives: []
+        }), 
+        __metadata('design:paramtypes', [])
+    ], Home);
+    return Home;
+}());
 exports.Home = Home;

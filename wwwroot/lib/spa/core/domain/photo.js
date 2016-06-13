@@ -1,6 +1,6 @@
 "use strict";
-class Photo {
-    constructor(id, title, uri, albumId, albumTitle, dateUploaded) {
+var Photo = (function () {
+    function Photo(id, title, uri, albumId, albumTitle, dateUploaded) {
         this.Id = id;
         this.Title = title;
         this.Uri = uri;
@@ -8,5 +8,6 @@ class Photo {
         this.AlbumTitle = albumTitle;
         this.DateUploaded = dateUploaded;
     }
-}
+    return Photo;
+}());
 exports.Photo = Photo;

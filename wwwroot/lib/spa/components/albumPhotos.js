@@ -1,4 +1,9 @@
 "use strict";
+var __extends = (this && this.__extends) || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() { this.constructor = d; }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+};
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,17 +13,18 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-const core_1 = require('@angular/core');
-const common_1 = require('@angular/common');
-const router_deprecated_1 = require('@angular/router-deprecated');
-const paginated_1 = require('../core/common/paginated');
-const dataService_1 = require('../core/services/dataService');
-const utilityService_1 = require('../core/services/utilityService');
-const notificationService_1 = require('../core/services/notificationService');
-const operationResult_1 = require('../core/domain/operationResult');
-let AlbumPhotos = class AlbumPhotos extends paginated_1.Paginated {
-    constructor(dataService, utilityService, notificationService, routeParam) {
-        super(0, 0, 0);
+var core_1 = require('@angular/core');
+var common_1 = require('@angular/common');
+var router_deprecated_1 = require('@angular/router-deprecated');
+var paginated_1 = require('../core/common/paginated');
+var dataService_1 = require('../core/services/dataService');
+var utilityService_1 = require('../core/services/utilityService');
+var notificationService_1 = require('../core/services/notificationService');
+var operationResult_1 = require('../core/domain/operationResult');
+var AlbumPhotos = (function (_super) {
+    __extends(AlbumPhotos, _super);
+    function AlbumPhotos(dataService, utilityService, notificationService, routeParam) {
+        _super.call(this, 0, 0, 0);
         this.dataService = dataService;
         this.utilityService = utilityService;
         this.notificationService = notificationService;
@@ -26,64 +32,67 @@ let AlbumPhotos = class AlbumPhotos extends paginated_1.Paginated {
         this._albumsAPI = 'api/albums/';
         this._photosAPI = 'api/photos/';
     }
-    ngOnInit() {
+    AlbumPhotos.prototype.ngOnInit = function () {
         this._albumId = this.routeParam.get('id');
         this._albumsAPI += this._albumId + '/photos/';
         this.dataService.set(this._albumsAPI, 12);
         this.getAlbumPhotos();
-    }
-    getAlbumPhotos() {
+    };
+    AlbumPhotos.prototype.getAlbumPhotos = function () {
+        var _this = this;
         this.dataService.get(this._page)
-            .subscribe(res => {
+            .subscribe(function (res) {
             var data = res.json();
-            this._photos = data.Items;
-            this._displayingTotal = this._photos.length;
-            this._page = data.Page;
-            this._pagesCount = data.TotalPages;
-            this._totalCount = data.TotalCount;
-            this._albumTitle = this._photos[0].AlbumTitle;
-        }, error => {
+            _this._photos = data.Items;
+            _this._displayingTotal = _this._photos.length;
+            _this._page = data.Page;
+            _this._pagesCount = data.TotalPages;
+            _this._totalCount = data.TotalCount;
+            _this._albumTitle = _this._photos[0].AlbumTitle;
+        }, function (error) {
             if (error.status == 401 || error.status == 302) {
-                this.utilityService.navigateToSignIn();
+                _this.utilityService.navigateToSignIn();
             }
             console.error('Error: ' + error);
-        }, () => console.log(this._photos));
-    }
-    search(i) {
-        super.search(i);
+        }, function () { return console.log(_this._photos); });
+    };
+    AlbumPhotos.prototype.search = function (i) {
+        _super.prototype.search.call(this, i);
         this.getAlbumPhotos();
-    }
+    };
     ;
-    convertDateTime(date) {
+    AlbumPhotos.prototype.convertDateTime = function (date) {
         return this.utilityService.convertDateTime(date);
-    }
-    delete(photo) {
+    };
+    AlbumPhotos.prototype.delete = function (photo) {
+        var _this = this;
         var _removeResult = new operationResult_1.OperationResult(false, '');
-        this.notificationService.printConfirmationDialog('Are you sure you want to delete the photo?', () => {
-            this.dataService.deleteResource(this._photosAPI + photo.Id)
-                .subscribe(res => {
+        this.notificationService.printConfirmationDialog('Are you sure you want to delete the photo?', function () {
+            _this.dataService.deleteResource(_this._photosAPI + photo.Id)
+                .subscribe(function (res) {
                 _removeResult.Succeeded = res.Succeeded;
                 _removeResult.Message = res.Message;
-            }, error => console.error('Error: ' + error), () => {
+            }, function (error) { return console.error('Error: ' + error); }, function () {
                 if (_removeResult.Succeeded) {
-                    this.notificationService.printSuccessMessage(photo.Title + ' removed from gallery.');
-                    this.getAlbumPhotos();
+                    _this.notificationService.printSuccessMessage(photo.Title + ' removed from gallery.');
+                    _this.getAlbumPhotos();
                 }
                 else {
-                    this.notificationService.printErrorMessage('Failed to remove photo');
+                    _this.notificationService.printErrorMessage('Failed to remove photo');
                 }
             });
         });
-    }
-};
-AlbumPhotos = __decorate([
-    core_1.Component({
-        selector: 'album-photo',
-        providers: [notificationService_1.NotificationService],
-        templateUrl: './app/components/albumPhotos.html',
-        bindings: [notificationService_1.NotificationService],
-        directives: [common_1.CORE_DIRECTIVES, common_1.FORM_DIRECTIVES, router_deprecated_1.RouterLink]
-    }), 
-    __metadata('design:paramtypes', [dataService_1.DataService, utilityService_1.UtilityService, notificationService_1.NotificationService, router_deprecated_1.RouteParams])
-], AlbumPhotos);
+    };
+    AlbumPhotos = __decorate([
+        core_1.Component({
+            selector: 'album-photo',
+            providers: [notificationService_1.NotificationService],
+            templateUrl: './app/components/albumPhotos.html',
+            bindings: [notificationService_1.NotificationService],
+            directives: [common_1.CORE_DIRECTIVES, common_1.FORM_DIRECTIVES, router_deprecated_1.RouterLink]
+        }), 
+        __metadata('design:paramtypes', [dataService_1.DataService, utilityService_1.UtilityService, notificationService_1.NotificationService, router_deprecated_1.RouteParams])
+    ], AlbumPhotos);
+    return AlbumPhotos;
+}(paginated_1.Paginated));
 exports.AlbumPhotos = AlbumPhotos;

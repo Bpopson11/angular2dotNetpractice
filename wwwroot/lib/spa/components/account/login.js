@@ -8,52 +8,54 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-const core_1 = require('@angular/core');
-const common_1 = require('@angular/common');
-const router_deprecated_1 = require('@angular/router-deprecated');
-const routes_1 = require('./routes');
-const user_1 = require('../../core/domain/user');
-const operationResult_1 = require('../../core/domain/operationResult');
-const membershipService_1 = require('../../core/services/membershipService');
-const notificationService_1 = require('../../core/services/notificationService');
-let Login = class Login {
-    constructor(membershipService, notificationService, router) {
+var core_1 = require('@angular/core');
+var common_1 = require('@angular/common');
+var router_deprecated_1 = require('@angular/router-deprecated');
+var routes_1 = require('./routes');
+var user_1 = require('../../core/domain/user');
+var operationResult_1 = require('../../core/domain/operationResult');
+var membershipService_1 = require('../../core/services/membershipService');
+var notificationService_1 = require('../../core/services/notificationService');
+var Login = (function () {
+    function Login(membershipService, notificationService, router) {
         this.membershipService = membershipService;
         this.notificationService = notificationService;
         this.router = router;
         this.routes = routes_1.Routes;
     }
-    ngOnInit() {
+    Login.prototype.ngOnInit = function () {
         this._user = new user_1.User('', '');
         this.routes = routes_1.Routes;
-    }
-    login() {
+    };
+    Login.prototype.login = function () {
+        var _this = this;
         var _authenticationResult = new operationResult_1.OperationResult(false, '');
         this.membershipService.login(this._user)
-            .subscribe(res => {
+            .subscribe(function (res) {
             _authenticationResult.Succeeded = res.Succeeded;
             _authenticationResult.Message = res.Message;
-        }, error => console.error('Error: ' + error), () => {
+        }, function (error) { return console.error('Error: ' + error); }, function () {
             if (_authenticationResult.Succeeded) {
-                this.notificationService.printSuccessMessage('Welcome back ' + this._user.Username + '!');
-                localStorage.setItem('user', JSON.stringify(this._user));
-                this.router.navigate([this.routes.home.name]);
+                _this.notificationService.printSuccessMessage('Welcome back ' + _this._user.Username + '!');
+                localStorage.setItem('user', JSON.stringify(_this._user));
+                _this.router.navigate([_this.routes.home.name]);
             }
             else {
-                this.notificationService.printErrorMessage(_authenticationResult.Message);
+                _this.notificationService.printErrorMessage(_authenticationResult.Message);
             }
         });
-    }
+    };
     ;
-};
-Login = __decorate([
-    core_1.Component({
-        selector: 'albums',
-        providers: [membershipService_1.MembershipService, notificationService_1.NotificationService],
-        templateUrl: './app/components/account/login.html',
-        bindings: [membershipService_1.MembershipService, notificationService_1.NotificationService],
-        directives: [common_1.CORE_DIRECTIVES, common_1.FORM_DIRECTIVES, router_deprecated_1.RouterLink]
-    }), 
-    __metadata('design:paramtypes', [membershipService_1.MembershipService, notificationService_1.NotificationService, router_deprecated_1.Router])
-], Login);
+    Login = __decorate([
+        core_1.Component({
+            selector: 'albums',
+            providers: [membershipService_1.MembershipService, notificationService_1.NotificationService],
+            templateUrl: './app/components/account/login.html',
+            bindings: [membershipService_1.MembershipService, notificationService_1.NotificationService],
+            directives: [common_1.CORE_DIRECTIVES, common_1.FORM_DIRECTIVES, router_deprecated_1.RouterLink]
+        }), 
+        __metadata('design:paramtypes', [membershipService_1.MembershipService, notificationService_1.NotificationService, router_deprecated_1.Router])
+    ], Login);
+    return Login;
+}());
 exports.Login = Login;

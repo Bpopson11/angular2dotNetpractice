@@ -1,6 +1,6 @@
 "use strict";
-class Paginated {
-    constructor(page, pagesCount, totalCount) {
+var Paginated = (function () {
+    function Paginated(page, pagesCount, totalCount) {
         this._page = 0;
         this._pagesCount = 0;
         this._totalCount = 0;
@@ -8,7 +8,7 @@ class Paginated {
         this._pagesCount = pagesCount;
         this._totalCount = totalCount;
     }
-    range() {
+    Paginated.prototype.range = function () {
         if (!this._pagesCount) {
             return [];
         }
@@ -24,14 +24,15 @@ class Paginated {
             ret.push(i);
         }
         return ret;
-    }
+    };
     ;
-    pagePlus(count) {
+    Paginated.prototype.pagePlus = function (count) {
         return +this._page + count;
-    }
-    search(i) {
+    };
+    Paginated.prototype.search = function (i) {
         this._page = i;
-    }
+    };
     ;
-}
+    return Paginated;
+}());
 exports.Paginated = Paginated;

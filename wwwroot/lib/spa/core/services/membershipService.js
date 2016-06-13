@@ -8,46 +8,47 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-const core_1 = require('@angular/core');
-const dataService_1 = require('./dataService');
-const user_1 = require('../domain/user');
-let MembershipService = class MembershipService {
-    constructor(accountService) {
+var core_1 = require('@angular/core');
+var dataService_1 = require('./dataService');
+var user_1 = require('../domain/user');
+var MembershipService = (function () {
+    function MembershipService(accountService) {
         this.accountService = accountService;
         this._accountRegisterAPI = 'api/account/register/';
         this._accountLoginAPI = 'api/account/authenticate/';
         this._accountLogoutAPI = 'api/account/logout/';
     }
-    register(newUser) {
+    MembershipService.prototype.register = function (newUser) {
         this.accountService.set(this._accountRegisterAPI);
         return this.accountService.post(JSON.stringify(newUser));
-    }
-    login(creds) {
+    };
+    MembershipService.prototype.login = function (creds) {
         this.accountService.set(this._accountLoginAPI);
         return this.accountService.post(JSON.stringify(creds));
-    }
-    logout() {
+    };
+    MembershipService.prototype.logout = function () {
         this.accountService.set(this._accountLogoutAPI);
         return this.accountService.post(null, false);
-    }
-    isUserAuthenticated() {
+    };
+    MembershipService.prototype.isUserAuthenticated = function () {
         var _user = localStorage.getItem('user');
         if (_user != null)
             return true;
         else
             return false;
-    }
-    getLoggedInUser() {
+    };
+    MembershipService.prototype.getLoggedInUser = function () {
         var _user;
         if (this.isUserAuthenticated()) {
             var _userData = JSON.parse(localStorage.getItem('user'));
             _user = new user_1.User(_userData.Username, _userData.Password);
         }
         return _user;
-    }
-};
-MembershipService = __decorate([
-    core_1.Injectable(), 
-    __metadata('design:paramtypes', [dataService_1.DataService])
-], MembershipService);
+    };
+    MembershipService = __decorate([
+        core_1.Injectable(), 
+        __metadata('design:paramtypes', [dataService_1.DataService])
+    ], MembershipService);
+    return MembershipService;
+}());
 exports.MembershipService = MembershipService;

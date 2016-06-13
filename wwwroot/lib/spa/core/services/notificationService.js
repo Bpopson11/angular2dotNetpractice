@@ -8,18 +8,18 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-const core_1 = require('@angular/core');
-let NotificationService = class NotificationService {
-    constructor() {
+var core_1 = require('@angular/core');
+var NotificationService = (function () {
+    function NotificationService() {
         this._notifier = alertify;
     }
-    printSuccessMessage(message) {
+    NotificationService.prototype.printSuccessMessage = function (message) {
         this._notifier.success(message);
-    }
-    printErrorMessage(message) {
+    };
+    NotificationService.prototype.printErrorMessage = function (message) {
         this._notifier.error(message);
-    }
-    printConfirmationDialog(message, okCallback) {
+    };
+    NotificationService.prototype.printConfirmationDialog = function (message, okCallback) {
         this._notifier.confirm(message, function (e) {
             if (e) {
                 okCallback();
@@ -27,10 +27,11 @@ let NotificationService = class NotificationService {
             else {
             }
         });
-    }
-};
-NotificationService = __decorate([
-    core_1.Injectable(), 
-    __metadata('design:paramtypes', [])
-], NotificationService);
+    };
+    NotificationService = __decorate([
+        core_1.Injectable(), 
+        __metadata('design:paramtypes', [])
+    ], NotificationService);
+    return NotificationService;
+}());
 exports.NotificationService = NotificationService;
