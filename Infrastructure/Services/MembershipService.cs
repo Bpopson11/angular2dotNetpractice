@@ -1,6 +1,7 @@
 ﻿using PhotoGallery.Entities;
 using PhotoGallery.Infrastructure.Repositories;
 using PhotoGallery.Infrastructure.Repositories.Abstract;
+using PhotoGallery.Infrastructure.Services.Abstract;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -1,4 +1,4 @@
-﻿{
+{
     "webroot": "wwwroot",
     "userSecretsId": "PhotoGallery",
     "version": "2.0.0-*",
@@ -9,6 +9,7 @@
 
   "dependencies": {
     "AutoMapper.Data": "1.0.0-beta1",
+    "EntityFramework.Core": "7.0.0-rc1-final",
     "Microsoft.AspNetCore.Authentication.Cookies": "1.0.0-rc2-final",
     "Microsoft.AspNetCore.Diagnostics": "1.0.0-rc2-final",
     "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": "1.0.0-rc2-final",
