@@ -9,24 +9,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 const core_1 = require('@angular/core');
-const router_deprecated_1 = require('@angular/router-deprecated');
-let UtilityService = class UtilityService {
-    constructor(router) {
-        this._router = router;
-    }
-    convertDateTime(date) {
-        var _formattedDate = new Date(date.toString());
-        return _formattedDate.toDateString();
-    }
-    navigate(path) {
-        this._router.navigate([path]);
-    }
-    navigateToSignIn() {
-        this.navigate('/Account/Login');
+let Home = class Home {
+    constructor() {
     }
 };
-UtilityService = __decorate([
-    core_1.Injectable(), 
-    __metadata('design:paramtypes', [router_deprecated_1.Router])
-], UtilityService);
-exports.UtilityService = UtilityService;
+Home = __decorate([
+    core_1.Component({
+        selector: 'home',
+        templateUrl: './app/components/home.html',
+        directives: []
+    }), 
+    __metadata('design:paramtypes', [])
+], Home);
+exports.Home = Home;

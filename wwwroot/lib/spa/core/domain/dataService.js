@@ -8,39 +8,41 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-const http_1 = require('@angular/http');
-const core_1 = require('@angular/core');
-let DataService = class DataService {
-    constructor(http) {
+var http_1 = require('@angular/http');
+var core_1 = require('@angular/core');
+var DataService = (function () {
+    function DataService(http) {
         this.http = http;
     }
-    set(baseUri, pageSize) {
+    DataService.prototype.set = function (baseUri, pageSize) {
         this._baseUri = baseUri;
         this._pageSize = pageSize;
-    }
-    get(page) {
+    };
+    DataService.prototype.get = function (page) {
         var uri = this._baseUri + page.toString() + '/' + this._pageSize.toString();
         return this.http.get(uri)
-            .map(response => (response));
-    }
-    post(data, mapJson = true) {
+            .map(function (response) { return (response); });
+    };
+    DataService.prototype.post = function (data, mapJson) {
+        if (mapJson === void 0) { mapJson = true; }
         if (mapJson)
             return this.http.post(this._baseUri, data)
-                .map(response => response.json());
+                .map(function (response) { return response.json(); });
         else
             return this.http.post(this._baseUri, data);
-    }
-    delete(id) {
+    };
+    DataService.prototype.delete = function (id) {
         return this.http.delete(this._baseUri + '/' + id.toString())
-            .map(response => response.json());
-    }
-    deleteResource(resource) {
+            .map(function (response) { return response.json(); });
+    };
+    DataService.prototype.deleteResource = function (resource) {
         return this.http.delete(resource)
-            .map(response => response.json());
-    }
-};
-DataService = __decorate([
-    core_1.Injectable(), 
-    __metadata('design:paramtypes', [http_1.Http])
-], DataService);
+            .map(function (response) { return response.json(); });
+    };
+    DataService = __decorate([
+        core_1.Injectable(), 
+        __metadata('design:paramtypes', [http_1.Http])
+    ], DataService);
+    return DataService;
+}());
 exports.DataService = DataService;

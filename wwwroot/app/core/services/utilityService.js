@@ -8,25 +8,27 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-const core_1 = require('@angular/core');
-const router_deprecated_1 = require('@angular/router-deprecated');
-let UtilityService = class UtilityService {
-    constructor(router) {
+var core_1 = require('@angular/core');
+var router_deprecated_1 = require('@angular/router-deprecated');
+var UtilityService = (function () {
+    function UtilityService(router) {
         this._router = router;
     }
-    convertDateTime(date) {
+    UtilityService.prototype.convertDateTime = function (date) {
         var _formattedDate = new Date(date.toString());
         return _formattedDate.toDateString();
-    }
-    navigate(path) {
+    };
+    UtilityService.prototype.navigate = function (path) {
         this._router.navigate([path]);
-    }
-    navigateToSignIn() {
+    };
+    UtilityService.prototype.navigateToSignIn = function () {
         this.navigate('/Account/Login');
-    }
-};
-UtilityService = __decorate([
-    core_1.Injectable(), 
-    __metadata('design:paramtypes', [router_deprecated_1.Router])
-], UtilityService);
+    };
+    UtilityService = __decorate([
+        core_1.Injectable(), 
+        __metadata('design:paramtypes', [router_deprecated_1.Router])
+    ], UtilityService);
+    return UtilityService;
+}());
 exports.UtilityService = UtilityService;
+//# sourceMappingURL=utilityService.js.map

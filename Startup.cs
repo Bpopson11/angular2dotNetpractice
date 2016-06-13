@@ -10,6 +10,8 @@ using PhotoGallery.Infrastructure.Mappings;
 using System.Security.Claims;
 using System.IO;
 using Microsoft.Extensions.FileProviders;
+using PhotoGallery.Infrastructure.Repositories.Abstract;
+using PhotoGallery.Infrastructure.Services.Abstract;
 
 namespace PhotoGallery
 {

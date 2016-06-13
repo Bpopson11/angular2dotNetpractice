@@ -8,25 +8,23 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-const core_1 = require('@angular/core');
-const router_deprecated_1 = require('@angular/router-deprecated');
-let UtilityService = class UtilityService {
-    constructor(router) {
-        this._router = router;
+var core_1 = require('@angular/core');
+var common_1 = require('@angular/common');
+var router_deprecated_1 = require('@angular/router-deprecated');
+var routes_1 = require('./routes');
+var Account = (function () {
+    function Account() {
     }
-    convertDateTime(date) {
-        var _formattedDate = new Date(date.toString());
-        return _formattedDate.toDateString();
-    }
-    navigate(path) {
-        this._router.navigate([path]);
-    }
-    navigateToSignIn() {
-        this.navigate('/Account/Login');
-    }
-};
-UtilityService = __decorate([
-    core_1.Injectable(), 
-    __metadata('design:paramtypes', [router_deprecated_1.Router])
-], UtilityService);
-exports.UtilityService = UtilityService;
+    Account = __decorate([
+        core_1.Component({
+            selector: 'account',
+            templateUrl: './app/components/account/account.html',
+            directives: [router_deprecated_1.ROUTER_DIRECTIVES, common_1.CORE_DIRECTIVES, common_1.FORM_DIRECTIVES]
+        }),
+        router_deprecated_1.RouteConfig(routes_1.APP_ROUTES), 
+        __metadata('design:paramtypes', [])
+    ], Account);
+    return Account;
+}());
+exports.Account = Account;
+//# sourceMappingURL=account.js.map

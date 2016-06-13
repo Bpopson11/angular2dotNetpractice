@@ -1,6 +1,6 @@
 "use strict";
-class Album {
-    constructor(id, title, description, thumbnail, dateCreated, totalPhotos) {
+var Album = (function () {
+    function Album(id, title, description, thumbnail, dateCreated, totalPhotos) {
         this.Id = id;
         this.Title = title;
         this.Description = description;
@@ -8,5 +8,7 @@ class Album {
         this.DateCreated = dateCreated;
         this.TotalPhotos = totalPhotos;
     }
-}
+    return Album;
+}());
 exports.Album = Album;
+//# sourceMappingURL=album.js.map
